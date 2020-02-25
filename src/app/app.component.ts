@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-// import * as data from '../files/example.json';
-import { HttpClient } from '@angular/common/http';
+
+import { AppDataService } from './app-data.service';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +10,11 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent implements OnInit {
   title = 'angular-last-example';
 
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private appDataService: AppDataService) {}
 
   ngOnInit(): void {
-    this.httpClient.get('../files/example.json')
-      .subscribe((data) => {
+    this.appDataService.getData()
+      .subscribe(data => {
         console.log('data: ', data);
       });
   }
